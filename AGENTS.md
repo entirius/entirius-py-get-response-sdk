@@ -1,6 +1,6 @@
 # AGENTS.md
 
-GetResponse email marketing & e-commerce REST API SDK — distribution `entirius-py-get-response-sdk`,
+GetResponse email marketing and ecommerce REST API SDK — distribution `entirius-py-get-response-sdk`,
 import `get_response_sdk`.
 
 ## Commands
@@ -20,11 +20,13 @@ import `get_response_sdk`.
 - Git flow: `master` (production) + `develop` (integration); changes land via PR; semver tag on `master`.
 - Never rename the import package `get_response_sdk` — it is a public API contract.
 - Default: do not commit — git is the user's call.
+- No AI attribution in commits or PR descriptions.
 
 ## Architecture
 
-- `get_response_sdk.py` — `GetResponseClient`: builds authorized requests to the GetResponse REST API v3
-  (`X-Auth-Token: api-key <key>`); contacts, newsletters, custom fields and full e-commerce CRUD.
-- `dto/` — contact and subscription-webhook payload dataclasses (`marshmallow-dataclass`).
-- `validators/` — response shape validation; error messages carry the API `context` field.
-- Integration tests are not shipped (they required a live API key); a local smoke test covers client construction.
+- `src/get_response_sdk/get_response_sdk.py`: `GetResponseClient` builds authorized requests to the GetResponse
+  REST API v3 (`X-Auth-Token: api-key <key>`); contacts, campaigns, custom fields and full ecommerce CRUD.
+- `dto/`: contact and subscription-webhook payload dataclasses (`marshmallow-dataclass`).
+- `validators/`: response shape validation; error messages carry the API `context` field.
+- Integration tests are not shipped (they required a live API key); local tests cover client construction,
+  resource URLs and auth headers.
